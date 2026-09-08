@@ -4,7 +4,7 @@ const cors = require("cors");
 const path = require("path");
 const routes = require("./routes");
 
-const app = express(); // app = your whole backend server
+const app = express(); // app = your whole backend server first step
 
 // ─── MIDDLEWARE ───────────────────────────────
 app.use(cors()); //Allows frontend like React or mobile app to access backend.

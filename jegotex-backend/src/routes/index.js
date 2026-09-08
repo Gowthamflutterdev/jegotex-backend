@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { register, login } = require("../controllers/authController");
 const {
-  getProducts, getProduct, createProduct, updateProduct, deleteProduct, updateStock
+  getProducts, getProduct, createProduct, updateProduct, deleteProduct, updateStock, productImage
 } = require("../controllers/productController");
 const { getCart, addToCart, updateCart, removeFromCart } = require("../controllers/cartController");
 const { placeOrder, getMyOrders, getOrder, updateOrderStatus, getAllOrders } = require("../controllers/orderController");
@@ -18,10 +18,12 @@ router.post("/auth/login", login);
 // ─── PRODUCTS ────────────────────────────────
 router.get("/products", getProducts);                          // Public
 router.get("/products/:id", getProduct);                      // Public
-router.post("/products", protect, adminOnly, upload.array("images", 5), createProduct); // Admin
+router.post("/createproducts", protect, adminOnly, upload.array("images", 5), createProduct); // Admin
 router.put("/products/:id", protect, adminOnly, updateProduct);     // Admin
 router.delete("/products/:id", protect, adminOnly, deleteProduct);  // Admin
 router.put("/products/:id/variants/:variantId/stock", protect, adminOnly, updateStock); // Admin
+router.get("/api/productImage", productImage);                // Public
+
 
 // ─── CART ────────────────────────────────────
 router.get("/cart", protect, getCart);
